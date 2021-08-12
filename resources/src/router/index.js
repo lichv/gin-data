@@ -56,9 +56,9 @@ router.beforeEach((to, from, next) => {
     var isAuthenticated = false
 
     var user_token = localStorage.getItem('user_token')
-        if (!user_token && typeof(user_token)!="undefined" && user_token!=0) {
-            user_token = Cookies.get('user_token')
-        }
+    if (!user_token && typeof(user_token)!="undefined" && user_token!=0) {
+        user_token = Cookies.get('user_token')
+    }
 
     console.log('beforeEach_user_token',user_token)
     if(!(typeof user_token === 'undefined' || user_token === null || user_token === "")){

@@ -20,6 +20,23 @@ import getTempStateDistribution from './getTempStateDistribution'
 import getDataFlagDistribution from './getDataFlagDistribution'
 import getDataStateDistribution from './getDataStateDistribution'
 
+
+
+import getPointBaiduPage from './getPointBaiduPage'
+import getPointGaodePage from './getPointGaodePage'
+import getPointTencentPage from './getPointTencentPage'
+import getPointHospitalPage from './getPointHospitalPage'
+
+import delPointBaidu from './delPointBaidu'
+import delPointGaode from './delPointGaode'
+import delPointTencent from './delPointTencent'
+import delPointHospital from './delPointHospital'
+
+import savePointBaidu from './savePointBaidu'
+import savePointGaode from './savePointGaode'
+import savePointTencent from './savePointTencent'
+import savePointHospital from './savePointHospital'
+
 let api = {
     getMonitorPages,
     getProductDistribution,
@@ -39,6 +56,19 @@ let api = {
     getTempStateDistribution,
     getDataFlagDistribution,
     getDataStateDistribution,
+
+    getPointBaiduPage,
+    getPointGaodePage,
+    getPointTencentPage,
+    getPointHospitalPage,
+    delPointBaidu,
+    delPointGaode,
+    delPointTencent,
+    delPointHospital,
+    savePointBaidu,
+    savePointGaode,
+    savePointTencent,
+    savePointHospital,
 }
 
 export default api

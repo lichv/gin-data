@@ -236,12 +236,12 @@ input:invalid {
   min-height: 100px;
 }
 .el-card.page_wrapper > .el-card__body{
-  padding: 12px;
+  padding: 6px;
   height: 100%;
   overflow-y: auto;
 }
 .el-card.page_wrapper > .el-card__header + .el-card__body{
-  padding: 12px;
+  padding: 6px;
   height: calc(100% - 60px);
   overflow-y: auto;
 }

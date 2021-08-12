@@ -1,10 +1,11 @@
 <template>
-	<el-card class="hospital_table page_wrapper">
+	<el-card class="point_baidu_table page_wrapper">
 		<div class="page_header">
 			<el-form :inline="true" :model="query" class="monitot-form-inline">
 				<div class="el-form-item el-form-item--small">
 					<div class="el-input el-input-group el-input--small el-input-group--prepend">
-							<input class="el-input__inner" type="text" autocomplete="off" placeholder="请输入名称" v-model="query.name" @change="getList" @keyup="getList">
+							<input class="el-input__inner adcode-input" type="text" autocomplete="off" placeholder="地区编码" v-model="query.adcode" @change="getList" @keyup="getList">
+							<input class="el-input__inner name-input" type="text" autocomplete="off" placeholder="请输入名称" v-model="query.name" @change="getList" @keyup="getList">
 							<div class="el-input-group__append">
 								<button class="el-button el-button--default" type="button" @click="handlerReset">
 									<i class="el-icon-refresh"></i>
@@ -30,7 +31,7 @@
 			<div class="batch-handle">
 			</div>
 			<div class="pagination">
-				<el-pagination small layout="total, prev, pager, next" :page-size="page.size" :total="page.total" @next-click="handleNext" @prev-click="handlePrev" @current-change="handleChangePage" @size-change="handleChangeSize" :pager-count="3"></el-pagination>
+				<el-pagination small layout="total, prev, pager, next" :page-size="page.size" :total="page.total" @next-click="handleNext" @prev-click="handlePrev" @current-change="handleChangePage" @size-change="handleChangeSize" :pager-count="2"></el-pagination>
 			</div>
 		</div>
 	</el-card>
@@ -40,7 +41,7 @@
 	import dayjs from 'dayjs';
 	import api from '../api';
 	export default {
-		name: 'ElHospitalTable',
+		name: 'ElPointHospitalTable',
 		data() {
 			return {
 				list:[],
@@ -55,6 +56,7 @@
 					size:50,
 					order:'id',
 					sort :1,
+					adcode:"",
 					name:"",
 				},
 				form:{
@@ -63,6 +65,7 @@
 			}
 		},
 		props: {
+			adcode: String,
 			keyword: String
 		},
 		watch:{
@@ -79,6 +82,14 @@
 			console.log('come in')
 			this.getPage(1)
 			watch(
+	        () => _this.adcode,
+	        (toParams, previousParams) => {
+	          _this.query.adcode = toParams
+	          console.log('watch_keyword',_this.query)
+	          _this.getList()
+	        }
+	        )
+			watch(
 	        () => _this.keyword,
 	        (toParams, previousParams) => {
 	          _this.query.name = toParams
@@ -92,7 +103,7 @@
 				const _this = this;
 				this.query.page = page
 				console.log(this.query)
-				api.getHospitalPage.send(this.query)
+				api.getPointHospitalPage.send(this.query)
 				.then(result => {
 					console.log("getPage的结果",result)
 					if (result.state==2000) {
@@ -164,19 +175,14 @@
 					this.getPage(1)
 				}
 			},
-			handleSelect(item){
-
-			},
 			handlerReset(){
-				this.query.name = ''
+				this.query.adcode = ''
 				this.getList()
 			},
 			handleDel(item){
 				const _this = this;
-				console.log('item',item)
-				api.delHospital.send({'id':item.id})
+				api.delPointHospital.send({'id':item.id})
 				.then(result => {
-					console.log("getPage的结果",result)
 					if (result.state==2000) {
 						_this.getPage(1)
 					}
@@ -186,9 +192,6 @@
 				})
 			},
 			handleRowClick(row,column,event){
-				console.log('row',row)
-				console.log('column',column)
-				console.log('event',event)
 				this.$emit('select',row)
 			},
 			copy(text){
@@ -215,10 +218,14 @@
 	}
 </script>
 <style>
-
-.hospital_table .el-table__body tr.bg-blue:hover > td{
+.point_baidu_table .el-table__body tr.bg-blue:hover > td{
   background-color: #6fb6ff;
   color:#fff;
 }
-
+.monitot-form-inline .el-input-group{
+	display: flex;
+}
+.adcode-input{
+	width: 80px;
+}
 </style>

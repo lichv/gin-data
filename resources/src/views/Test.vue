@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<el-temp-table></el-temp-table>
+		<el-area-select></el-area-select>
 	</div>
 </template>
 

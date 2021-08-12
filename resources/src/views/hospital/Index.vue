@@ -1,8 +1,18 @@
 <template>
-	<div class="hospital-page page_wrapper">
-		<el-temp-table class="temp-table" @select="handleSelectTemp" @move="handleMoveTemp"></el-temp-table>
-		<el-hospital-table class="hospital-table" @select="handleSelect" :keyword="query"></el-hospital-table>
-		<el-hospital-form class="hospital-form" :item="selected"></el-hospital-form>
+	<div class="data-dashboard-page page_wrapper">
+		<div class="column-card region-card">
+			<el-area-select @select="handleSelectArea" ></el-area-select>
+		</div>
+		<div class="column-card">
+			<el-point-hospital-table class="one-row-card-table" :adcode="baiduQuery" :keyword="tempQuery"></el-point-hospital-table>
+		</div>
+		<div class="column-card">
+			<el-temp-table class="temp-table two-row-card-table" @select="handleSelectTemp" @move="handleMoveTemp" :keyword="tempQuery"></el-temp-table>
+			<el-hospital-table class="hospital-table two-row-card-table" @select="handleSelect" :keyword="hospitalQuery"></el-hospital-table>
+		</div>
+		<div class="other-card">
+			<el-hospital-form class="hospital-form" :item="selected"></el-hospital-form>
+		</div>
 	</div>
 </template>
 <script>
@@ -11,6 +21,11 @@
 		name: 'HelloWorld',
 		data() {
 			return {
+				baiduQuery:'',
+				gaodeQuery:'',
+				tencentQuery:'',
+				tempQuery:'',
+				hospitalQuery:'',
 				list:[],
 				page:{
 					page:1,
@@ -48,6 +63,16 @@
 			
 		},
 		methods: {
+			handleSelectArea(item){
+				console.log('handleSelectArea',item)
+				this.baiduQuery = item.code
+				this.gaodeQuery = item.code
+				this.tencentQuery = item.code
+				this.tempQuery = item.name
+				this.hospitalQuery = item.name
+
+
+			},
 			handleSelect(row){
 				console.log('handleSelect',row)
 				this.selected = row
@@ -78,18 +103,37 @@
 	}
 </script>
 <style>
-.hospital-page{
+.data-dashboard-page{
 	display: flex;
+	min-width: 1460px;
 }
-.temp-table{
+.column-card{
 	width: 300px;
-	min-width: 300px;
+	height: 100%;
 }
-.hospital-table{
-	width: 300px;
-	min-width: 300px;
+.column-card + .column-card{
 	margin-left: 6px;
 }
+.column-card.region-card{
+	width: 200px;
+}
+.two-row-card-table{
+	height: calc((100% - 6px)/2);
+}
+.two-row-card-table + .two-row-card-table{
+	margin-top: 6px;
+}
+.three-row-card-table{
+	height: calc((100% - 12px)/3);	
+}
+.three-row-card-table + .three-row-card-table{
+	margin-top: 6px;
+}
+.other-card{
+	flex: 1;
+	margin-left: 8px;
+}
+
 .hospital-form{
 	flex: 1;
 	margin-left: 6px;

@@ -32,6 +32,13 @@ import ElTempStateDistribution from './components/TempStateDistribution.vue'
 import ElDataFlagDistribution from './components/DataFlagDistribution.vue'
 import ElDataStateDistribution from './components/DataStateDistribution.vue'
 
+import ElAreaSelect from './components/AreaSelect.vue'
+
+import ElPointBaiduTable from './components/PointBaiduTable.vue'
+import ElPointGaodeTable from './components/PointGaodeTable.vue'
+import ElPointTencentTable from './components/PointTencentTable.vue'
+import ElPointHospitalTable from './components/PointHospitalTable.vue'
+
 const components = [
 ElAsiderMenu,
 ElChart,
@@ -47,6 +54,12 @@ ElTempFlagDistribution,
 ElTempStateDistribution,
 ElDataFlagDistribution,
 ElDataStateDistribution,
+ElAreaSelect,
+
+ElPointBaiduTable,
+ElPointGaodeTable,
+ElPointTencentTable,
+ElPointHospitalTable,
 ]
 components.forEach(component => {
 	app.component(component.name, component)

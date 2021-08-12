@@ -19,14 +19,10 @@
 		<div class="page_body">
 			<el-table :data="list" style="width: 100%" @header-click="headerClick" @row-click="handleRowClick" :row-class-name="tableRowClassName">
 				<el-table-column prop="name" label="名称"></el-table-column>
-				<el-table-column label="操作" width="120">
+				<el-table-column label="操作" width="90">
 					<template #default="scope">
-						<button class="el-button el-button--default el-button--mini is-round" type="button" @click="handleDel(scope.row)">
-							<i class="el-icon-delete"></i>
-						</button>
-						<button class="el-button el-button--default el-button--mini is-round" type="button" @click="handleMove(scope.row)">
-							<i class="el-icon-right"></i>
-						</button>
+						<span @click="handleDel(scope.row)" class="handle-btn"><i class="el-icon-delete"></i></span> 
+						<span @click="handleMove(scope.row)" class="handle-btn"><i class="el-icon-right"></i></span>
 					</template>
 				</el-table-column>
 			</el-table>
@@ -41,6 +37,7 @@
 	</el-card>
 </template>
 <script>
+	import { watch } from 'vue'
 	import dayjs from 'dayjs';
 	import api from '../api';
 	export default {
@@ -68,7 +65,7 @@
 			}
 		},
 		props: {
-			msg: String
+			keyword: String
 		},
 		watch:{
 			$router:{
@@ -80,7 +77,17 @@
 
 		},
 		mounted() {
+			const _this = this;
 			console.log('come in')
+			watch(
+	        () => _this.keyword,
+	        (toParams, previousParams) => {
+	          _this.query.name = toParams
+	          console.log('watch_keyword',_this.query)
+	          _this.getList()
+	        }
+	        )
+
 			this.getPage(1)
 		},
 		methods: {
@@ -103,10 +110,7 @@
 				})
 			},
 			reset(){
-				this.query={
-					page:1,
-					size:20,
-				}
+				this.query.page = 1
 				this.getPage(1)
 			},
 			getList() {
@@ -165,7 +169,7 @@
 				.then(result => {
 					console.log("getPage的结果",result)
 					if (result.state==2000) {
-						_this.getPage(_this.query.page)
+						_this.getPage(1)
 					}
 				})
 				.catch(e => {
@@ -278,5 +282,12 @@
 .el-table__body tr.hover-row.bg-blue>td{
 	background-color: #6fb6ff;
 	color:#fff;
+}
+.handle-btn{
+	display: inline-block;
+	width: 28px;
+	text-align: center;
+	height: 100%;
+	line-height: 1.5;
 }
 </style>
