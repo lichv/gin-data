@@ -1,25 +1,52 @@
 {
-  "name": "frontend",
-  "version": "0.0.0",
+  "name": "hospital",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vue-cli-service serve --port 8010 --open",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "dayjs": "^1.10.5",
-    "echarts": "^5.1.1",
-    "element-plus": "^1.0.2-beta.44",
-    "js-cookie": "^2.2.1",
-    "vite": "^2.3.6",
-    "vue": "^3.0.5",
-    "vue-router": "^4.0.8",
-    "vuex": "^4.0.0"
+    "core-js": "^3.6.5",
+    "dayjs": "^1.10.6",
+    "echarts": "^5.1.2",
+    "element-plus": "^1.0.2-beta.69",
+    "js-cookie": "^3.0.0",
+    "vue": "^3.0.0",
+    "vue-router": "^4.0.11",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.2.3",
-    "@vue/compiler-sfc": "^3.0.5",
-    "vite": "^2.3.5"
-  }
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^7.0.0",
+    "sass": "^1.27.0",
+    "sass-loader": "^10.0.4",
+    "vue-cli-plugin-element-plus": "0.0.13"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }

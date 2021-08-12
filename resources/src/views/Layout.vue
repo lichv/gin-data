@@ -47,13 +47,7 @@
 		},
 		computed:{
 			asidesize:function(){
-				if (this.aside_size=='mini') {
-					this.isCollapse=true
-					return "64px"
-				}else{
-					this.isCollapse=false
-					return "240px"
-				}
+				return "64px"
 			},
 		},
 		watch:{
@@ -64,6 +58,8 @@
 				},
 			},
 			isCollapse(val,oldval) {
+				console.log('val',val)
+					console.log('oldval',oldval)
 				this.showCollapse = val;
 			},
 		},

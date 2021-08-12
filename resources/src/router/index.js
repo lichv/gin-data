@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory,createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import helpers from '../utils/helpers'
 import Cookies from 'js-cookie'
 
@@ -45,7 +45,6 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     console.log('路由拦截')
-
     var user_token = helpers.getUrlKey('user_token')
     if (!(!user_token && typeof(user_token)!="undefined" && user_token!=0)){
         localStorage.setItem('user_token',user_token)
@@ -55,10 +54,11 @@ router.beforeEach((to, from, next) => {
     }
     var isAuthenticated = false
 
-    var user_token = localStorage.getItem('user_token')
+    user_token = localStorage.getItem('user_token')
     if (!user_token && typeof(user_token)!="undefined" && user_token!=0) {
         user_token = Cookies.get('user_token')
     }
+
 
     console.log('beforeEach_user_token',user_token)
     if(!(typeof user_token === 'undefined' || user_token === null || user_token === "")){

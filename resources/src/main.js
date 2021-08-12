@@ -1,12 +1,13 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import './base.css'
 import './index.css'
 import router from './router'
 import store from './store'
-import ElementPlus from 'element-plus'
+import ElementPlus from 'element-plus';
 import 'dayjs/locale/zh-cn'
 import locale from 'element-plus/lib/locale/lang/zh-cn'
-import 'element-plus/lib/theme-chalk/index.css'
+import 'element-plus/lib/theme-chalk/index.css';
 
 import * as echarts from 'echarts'
 
@@ -39,6 +40,10 @@ import ElPointGaodeTable from './components/PointGaodeTable.vue'
 import ElPointTencentTable from './components/PointTencentTable.vue'
 import ElPointHospitalTable from './components/PointHospitalTable.vue'
 
+import ElInputTable from './components/InputTable.vue'
+import ElBaiduTable from './components/BaiduTable.vue'
+import ElGoogleTable from './components/GoogleTable.vue'
+
 const components = [
 ElAsiderMenu,
 ElChart,
@@ -60,6 +65,10 @@ ElPointBaiduTable,
 ElPointGaodeTable,
 ElPointTencentTable,
 ElPointHospitalTable,
+
+	ElInputTable,
+	ElBaiduTable,
+	ElGoogleTable,
 ]
 components.forEach(component => {
 	app.component(component.name, component)

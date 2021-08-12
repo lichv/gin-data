@@ -37,6 +37,14 @@ import savePointGaode from './savePointGaode'
 import savePointTencent from './savePointTencent'
 import savePointHospital from './savePointHospital'
 
+
+import getBaiduPages from './getBaiduPages'
+import getGooglePages from './getGooglePages'
+import getInputList from './getInputList'
+import saveTest from './saveTest'
+import delTest from './delTest'
+import delInput from './delInput'
+
 let api = {
     getMonitorPages,
     getProductDistribution,
@@ -69,6 +77,13 @@ let api = {
     savePointGaode,
     savePointTencent,
     savePointHospital,
+    
+    getBaiduPages,
+    getGooglePages,
+    getInputList,
+    delInput,
+    saveTest,
+    delTest,
 }
 
 export default api

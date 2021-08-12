@@ -32,6 +32,7 @@ service.interceptors.response.use(
         console.log('service.interceptors.response.success',response)
         const { headers, data, status } = response;
         if(status == '200' || data.success || data.result == 'success') {
+            console.log('headers',headers)
             return data
         } else {
             // Cookies.remove('user_token')
